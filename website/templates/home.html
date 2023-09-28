@@ -2,9 +2,31 @@
 
 {% block content %}
 
-    <div class="col-md-6 offset-md-3">
         {% if user.is_authenticated %}
-          <h1>Hello World</h1>
+          {% if records %}
+          <table class="table table-striped table-hover table-bordered">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            {% for record in records %}
+                <tbody>
+                  <tr>
+                    <th scope="row"><a href="{% url 'person_record' record.id %}">{{record.id}}</a></th>
+                    <td>{{record.first_name}}</td>
+                    <td>{{record.last_name}}</td>
+                    <td>{{record.phone}}</td>
+                    <td>{{record.email}}</td>
+                  </tr>
+                </tbody>
+            {% endfor %}
+          </table>
+          {% endif %}
         {% else %}
         <h1>Login</h1>
         <br>
@@ -23,6 +45,5 @@
               </form>
         </form>
         {% endif %}
-    </div>
 
 {% endblock content %}

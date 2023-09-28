@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <br>
+  <div class="card">
+    <div class="card-header">
+      Your information about this person
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><strong>Person name: </strong>{{person_record}}</h5><br>
+      <p class="card-text"><strong>Phone number: </strong>{{person_record.phone}}</p>
+      <p class="card-text"><strong>Email Address: </strong>{{person_record.email}}</p>
+      <p class="card-text">{{person_record.created_at}}</p>
+      <a href="{% url 'home' %}" class="btn btn-primary">Go Home</a>
+      <a href="{% url 'edit_record' person_record.id %}" class="btn btn-secondary" style="margin-left: 10px;">Edit</a>
+      <a href="{% url 'delete' person_record.id %}" class="btn btn-primary" style="background-color: red; margin-left: 10px;">Delete</a>
+    </div>
+  </div>
+{% endblock content %}
